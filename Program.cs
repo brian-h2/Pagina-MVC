@@ -1,4 +1,11 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Pagina_MVC.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Pagina_MVCContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Pagina_MVCContext") ?? throw new InvalidOperationException("Connection string 'Pagina_MVCContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
